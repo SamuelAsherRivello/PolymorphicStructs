@@ -8,8 +8,8 @@ using Unity.Transforms;
 public interface IMyTest
 {
     public bool TestProperty { get; set; }
-    public void DoSomething(float a, ref ComponentDataFromEntity<Translation> translationFromEntity);
-    public float DoSomethingWithReturnType(float a, ref ComponentDataFromEntity<Translation> translationFromEntity);
+    public void DoSomething(float a, ref ComponentLookup<Translation> translationFromEntity);
+    public float DoSomethingWithReturnType(float a, ref ComponentLookup<Translation> translationFromEntity);
 }
 
 public partial struct TestA : IMyTest
@@ -23,12 +23,12 @@ public partial struct TestA : IMyTest
 
     public bool TestProperty { get; set; }
 
-    public void DoSomething(float a, ref ComponentDataFromEntity<Translation> translationFromEntity)
+    public void DoSomething(float a, ref ComponentLookup<Translation> translationFromEntity)
     {
         B += a * C;
     }
 
-    public float DoSomethingWithReturnType(float a, ref ComponentDataFromEntity<Translation> translationFromEntity)
+    public float DoSomethingWithReturnType(float a, ref ComponentLookup<Translation> translationFromEntity)
     {
         return A + B + math.length(D);
     }
@@ -41,12 +41,12 @@ public partial struct TestB : IMyTest
 
     public bool TestProperty { get; set; }
 
-    public void DoSomething(float a, ref ComponentDataFromEntity<Translation> translationFromEntity)
+    public void DoSomething(float a, ref ComponentLookup<Translation> translationFromEntity)
     {
         A = math.length(translationFromEntity[B].Value);
     }
 
-    public float DoSomethingWithReturnType(float a, ref ComponentDataFromEntity<Translation> translationFromEntity)
+    public float DoSomethingWithReturnType(float a, ref ComponentLookup<Translation> translationFromEntity)
     {
         return A;
     }
